@@ -1,13 +1,15 @@
-import axios from 'axios';
+import React, { useState, useEffect } from 'react';
 import './App.css';
 
 function App() {
-  const binanceAPI = axios.get('https://api.binance.com').then((response) => {
-    return response.status;
-  });
+  const [apiResult, setApiResult] = useState(0);
+  useEffect(() => {
+    fetch("https://api.binance.com")
+      .then(res => setApiResult(res.status));
+  }, []);
   return (
     <div className="App">
-        <p>`Hello ${binanceAPI}`</p> 
+      Hello {apiResult}
     </div>
   );
 }
